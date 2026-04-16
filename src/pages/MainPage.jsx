@@ -6,18 +6,53 @@ import { intialProducts } from "../data/products";
 import Header from "../components/Header";
 
 const MainPage = ({ cartProducts, setCartProducts }) => {
-
   const navigate = useNavigate();
 
   const [products, setProducts] = useState(intialProducts);
+
+  const [currentCategory, setCurrentCategory] = useState("All");
+
+  useEffect(() => {
+    const filteredProducts = intialProducts.filter(
+      (product) =>
+        currentCategory === "All" || product.category === currentCategory,
+    );
+    setProducts(filteredProducts);
+  }, [currentCategory]);
 
   const addToCart = (newCartProduct) => {
     setCartProducts((prev) => [...prev, newCartProduct]);
   };
 
+  const categories = [
+    "All",
+    "Bags",
+    "Electronics",
+    "Shoes",
+    "Home & Kitchen",
+    "Apparel",
+    "Accessories",
+    "Sports",
+  ];
+
+  const changeCategory = (newCategory) => {
+    setCurrentCategory(newCategory);
+  };
+
   return (
     <main>
       <Header cartProducts={cartProducts} />
+
+      <section>
+        {categories.map((category, index) => {
+          return (
+            <button key={index} onClick={() => changeCategory(category)}>
+              {category}
+            </button>
+          );
+        })}
+      </section>
+
       <section className="products-list">
         {products.map((product) => {
           return (
