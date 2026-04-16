@@ -18,7 +18,8 @@ const MainPage = ({ cartProducts, setCartProducts, products, setProducts }) => {
     setProducts(filteredProducts);
   }, [currentCategory]);
 
-  const addToCart = (newCartProduct) => {
+  const addToCart = (event, newCartProduct) => {
+    event.stopPropagation();
     setCartProducts((prev) => [...prev, newCartProduct]);
   };
 
@@ -54,13 +55,17 @@ const MainPage = ({ cartProducts, setCartProducts, products, setProducts }) => {
       <section className="products-list">
         {products.map((product) => {
           return (
-            <div onClick={() => navigate(`/product/${product.id}`)} key={product.id} className="product-container">
+            <div
+              onClick={() => navigate(`/product/${product.id}`)}
+              key={product.id}
+              className="product-container"
+            >
               <img src={product.image} alt={product.title} />
               <p>{product.category}</p>
               <h2>{product.title}</h2>
               <h3>{product.rating}</h3>
               <h2>${product.price}</h2>
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
+              <button onClick={(event) => addToCart(event, product)}>Add to Cart</button>
             </div>
           );
         })}

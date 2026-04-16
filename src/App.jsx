@@ -6,7 +6,6 @@ import ProductDetails from "./pages/ProductDetails";
 import { intialProducts } from "./data/products";
 
 const App = () => {
-
   const [cartProducts, setCartProducts] = useState([]);
   const [products, setProducts] = useState(intialProducts);
 
@@ -26,10 +25,24 @@ const App = () => {
         />
         <Route
           path="/cart"
-          element={<CartPage cartProducts={cartProducts} setCartProducts={setCartProducts} />}
+          element={
+            <CartPage
+              cartProducts={cartProducts}
+              setCartProducts={setCartProducts}
+            />
+          }
         />
 
-        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route
+          path="/product/:id"
+          element={
+            <ProductDetails
+              products={products}
+              cartProducts={cartProducts}
+              setCartProducts={setCartProducts}
+            />
+          }
+        />
       </Routes>
     </Router>
   );
