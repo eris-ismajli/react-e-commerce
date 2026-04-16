@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { intialProducts } from "../data/products";
 import Header from "../components/Header";
 
-const MainPage = ({ cartProducts, setCartProducts }) => {
+const MainPage = ({ cartProducts, setCartProducts, products, setProducts }) => {
   const navigate = useNavigate();
-
-  const [products, setProducts] = useState(intialProducts);
 
   const [currentCategory, setCurrentCategory] = useState("All");
 
@@ -56,7 +54,7 @@ const MainPage = ({ cartProducts, setCartProducts }) => {
       <section className="products-list">
         {products.map((product) => {
           return (
-            <div key={product.id} className="product-container">
+            <div onClick={() => navigate(`/product/${product.id}`)} key={product.id} className="product-container">
               <img src={product.image} alt={product.title} />
               <p>{product.category}</p>
               <h2>{product.title}</h2>
