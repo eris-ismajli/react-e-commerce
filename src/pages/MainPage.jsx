@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { intialProducts } from "../data/products";
 import Header from "../components/Header";
 
+import "../index.css"
+
 const MainPage = ({ cartProducts, setCartProducts, products, setProducts }) => {
   const navigate = useNavigate();
 
