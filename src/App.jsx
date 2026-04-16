@@ -20,7 +20,7 @@ const App = () => {
         />
         <Route
           path="/cart"
-          element={<CartPage cartProducts={cartProducts} />}
+          element={<CartPage cartProducts={cartProducts} setCartProducts={setCartProducts}/>}
         />
       </Routes>
     </Router>
